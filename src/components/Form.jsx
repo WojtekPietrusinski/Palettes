@@ -46,21 +46,8 @@ const Form = () => {
     const handleClick = async (e) => {
       e.preventDefault()
 
-      // try {
-      //   await axios.post('/palettes/', {
-      //     name,
-      //     place,
-      //     type,
-      //     id,
-      //     date,
-      //     time,
-      //     quantity
-      //   })
-      // } catch (err){
-      //   console.log(err)
-      // }
-      
-        console.log([
+      try {
+        await axios.post('/palettes/', {
           name,
           place,
           type,
@@ -68,7 +55,20 @@ const Form = () => {
           date,
           time,
           quantity
-        ])
+        })
+      } catch (err){
+        console.log(err)
+      }
+      
+        // console.log([
+        //   name,
+        //   place,
+        //   type,
+        //   id,
+        //   date,
+        //   time,
+        //   quantity
+        // ])
     }
   
   return (
