@@ -1,0 +1,13 @@
+button {
+    color: hsl(0, 0%, 100%);
+    background-color:hsl(278, 68%, 11%) ;
+    border: none;
+    border-radius: 8px;
+    width: 310px;
+    height: 40px;
+    margin-top: 20px;
+  }
+
+button:hover {
+  opacity: 0.8;
+}

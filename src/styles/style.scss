@@ -1,0 +1,114 @@
+@use 'button'; 
+@use 'uploader';
+@use 'home';
+
+@mixin flexCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+form {
+  @include flexCenter();
+      margin-top: 70px;
+      margin-left: 300px;
+      height: 70vh;
+      width: 63vw;
+    
+     label {
+      font-size: 20px;
+     }
+
+     input {
+      height: 45px;
+      width: 300px;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+    }
+
+.tablebtn { 
+   align-self: center;
+    margin-bottom: 70px;
+    margin-top: 15px;
+}
+
+.upload {
+  text-align: center;
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.tablecontainer{
+  display: flex;
+  flex-direction: column;
+  height: 90%;
+}
+
+.navbar-toggler-icon{
+  margin: 0;
+}
+
+.navbar-toggler{
+  margin: 0;
+  width: 10%;
+  border: none;
+}
+
+
+//position: fix
+
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+outline: none; 
+box-shadow: none;
+}
+
+.chartholder {
+  height: 70%;
+  width: 80%;
+  margin: auto;
+  margin-top: 40px;
+}
+
+input::placeholder{
+  padding: 10px;
+}
+
+#date {
+padding: 10px;
+color: gray;
+
+}
+
+.uploadcontainer{
+  display: flex;
+  margin: 0;
+  width: 100%;
+}
+
+#transfer {
+  align-self: center;
+}
+
+.caption {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+canvas{
+  height: 60%;
+}
+
+.MuiDataGrid-columnHeaders.MuiDataGrid-withBorderColor.css-1iyq7zh-MuiDataGrid-columnHeaders{
+  background-color: rgb(244, 244, 244);
+  position: fixed;
+  top: 126px;
+  width: 90%;
+  z-index: 1;
+  border: 3px solid hsl(278, 68%, 11%);
+}

@@ -1,12 +1,12 @@
 import React from 'react'
-import Navbar from './Navbar'
 import { useState } from 'react';
+import axios from 'axios';
+// import { CSVReader } from "react-papaparse";
 
 const Upload = () => {
  
   const [file, setFile] = useState();
   const [array, setArray] = useState([]);
-
   const fileReader = new FileReader();
 
   const handleOnChange = (e) => {
@@ -14,7 +14,7 @@ const Upload = () => {
   };
 
   const csvFileToArray = string => {
-    const csvHeader = string.slice(0, string.indexOf("\n")).split(",");
+    const csvHeader = string.slice(0, string.indexOf("\n")).replace(/\s/g,'').split(",");
     const csvRows = string.slice(string.indexOf("\n") + 1).split("\n");
 
     const array = csvRows.map(i => {
@@ -25,66 +25,50 @@ const Upload = () => {
       }, {});
       return obj;
     });
-
     setArray(array);
   };
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
+    array.pop()
 
     if (file) {
       fileReader.onload = function (event) {
         const text = event.target.result;
         csvFileToArray(text);
+        };
       };
 
       fileReader.readAsText(file);
+    
+      try {
+        array.forEach( async (record) => await axios.post("http://localhost:8800/api/uploads/test", { name: record.Reportname, place: record.Areaname, type: record.Reporttype, id: record.ReportID, date: record.Reportdate, time: record.Reportduration, quantity: record.Reportquantity }));
+   
+     } catch (err){
+       console.log(err)
+     }
     }
-  };
-
-  const headerKeys = Object.keys(Object.assign({}, ...array));
 
   return (
-    <div className="upload">
-      <Navbar/>   
-        <div style={{ textAlign: "center" }}>
-            <h1>REACTJS CSV IMPORT EXAMPLE </h1>
-            <form>
-                <input 
-                id={"csvFileInput"}
-                type={"file"} 
-                accept={".csv"}
-                onChange={handleOnChange} />
-                
+    <div> 
+        <div className='upload'>
+            <h1> Upload .csv files  </h1>
+            <form className='uploadcontainer'>
+              <input 
+                type="file" 
+                accept=".csv"
+                onChange={handleOnChange}
+                />
+
                 <button
+                id='transfer'
                  onClick={(e) => {
                   handleOnSubmit(e)
                 }}>
-                  IMPORT CSV
+                  Upload .csv
                 </button>
             </form>
-
             <br />
-
-          <table>
-            <thead>
-              <tr key={"header"}>
-                {headerKeys.map((key) => (
-                  <th>{key}</th>
-                ))}
-              </tr>
-            </thead>
-
-            <tbody>
-              {array.map((item) => (
-                <tr key={item.id}>
-                  {Object.values(item).map((val) => (
-                    <td>{val}</td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
         </div>
     </div>
   )

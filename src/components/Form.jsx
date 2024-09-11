@@ -1,39 +1,7 @@
 import React, { useState } from 'react'
-import Navbar from './Navbar'
 import axios from "axios"
 
 const Form = () => {
-  // const [palette, setPalette] = useState({
-  //   name: '',
-  //   place: '',
-  //   type: '',
-  //   number: '',
-  //   date: '',
-  //   time: '',
-  //   quantity: ''
-  // })
-  
-  // const handleInput = (e) => {
-    //   e.persist();
-    //   setPalette({...palette, [e.target.name]: e.target.value})
-    // }
-    
-    // const savePalette = (e) => {
-      //   e.preventDeafult();
-      
-      //   const data = {
-        //     name: palette.name,
-        //     place: palette.place,
-        //     type: palette.type,
-        //     id: palette.id,
-        //     date: palette.date,
-  //     time: palette.time,
-  //     quantity: palette.quantity
-  //   }
-  
-  //   axios.post(``).then();
-  
-  // }
   
     const [name, setName] = useState('')
     const [place, setPlace] = useState('')
@@ -47,7 +15,7 @@ const Form = () => {
       e.preventDefault()
 
       try {
-        await axios.post('/palettes/', {
+        await axios.post('http://localhost:8800/api/pallets/test', {
           name,
           place,
           type,
@@ -59,41 +27,30 @@ const Form = () => {
       } catch (err){
         console.log(err)
       }
-      
-        // console.log([
-        //   name,
-        //   place,
-        //   type,
-        //   id,
-        //   date,
-        //   time,
-        //   quantity
-        // ])
     }
   
   return (
     <div className="form">
-      <Navbar/>   
       <div className="forms">
         <form>
           <div id="reportName">
             <label htmlFor="name">Report name</label> <br />
-            <input id='name'  type='text' name="name" value={name} onChange={(e)=>setName(e.target.value)} placeholder='E.g. packing'/>
+            <input id='name'  type='text' name="name" value={name} onChange={(e)=>setName(e.target.value)} placeholder='What happened?'/>
           </div>
           
           <div id="areaName">
             <label htmlFor="place">Area name</label> <br />
-            <input id='place' name="place" type='text' value={place} onChange={(e)=>setPlace(e.target.value)} placeholder='E.g. warehouse'/>
+            <input id='place' name="place" type='text' value={place} onChange={(e)=>setPlace(e.target.value)} placeholder='Where did it happen?'/>
           </div>
 
           <div id="reportType">
             <label htmlFor="type">Report type</label> <br />
-            <input id='type' name="type" type='text' value={type} onChange={(e)=>setType(e.target.value)} placeholder='E.g. malfunction'/>
+            <input id='type' name="type" type='text' value={type} onChange={(e)=>setType(e.target.value)} placeholder='How to clasify it?'/>
           </div>
 
           <div id="reportID">
             <label htmlFor="numer">Report ID</label> <br />
-            <input id='id' name="id" type='text' value={id} onChange={(e)=>setId(e.target.value)} placeholder=''/>
+            <input id='id' name="id" type='text' value={id} onChange={(e)=>setId(e.target.value)} placeholder='6-digits ID number '/>
           </div>
           
           <div id="reportDate">
@@ -108,7 +65,7 @@ const Form = () => {
 
           <div id="reportQuantity">
             <label htmlFor="time">Report quantity</label> <br />
-            <input id='quantity' name="quantity" type='text' value={quantity} onChange={(e)=>setQuantity(e.target.value)} placeholder=''/>
+            <input id='quantity' name="quantity" type='text' value={quantity} onChange={(e)=>setQuantity(e.target.value)} placeholder='Number of reports'/>
           </div>
 
           <div id="submit">
@@ -119,5 +76,4 @@ const Form = () => {
     </div>
   )
 }
-
 export default Form

@@ -1,10 +1,11 @@
 import { db } from "../db.js";
 
-export const addPalette = (req, res) => {
+export const addUpload = (req, res) => {
 
     const q = "INSERT INTO palettes(`Report name`, `Area name`, `Report type`, `Report ID`, `Report date`, `Report duration`, `Report quantity`) VALUES(?)"
 
     const values = [
+        //poszczególne elemety array do endpointa /test
         req.body.name,
         req.body.place,
         req.body.type,
@@ -15,8 +16,7 @@ export const addPalette = (req, res) => {
     ];
     db.query(q, [values], (err, data) => {
         if (err) return res.status(500).json(err);
-        return res.json("Palette has been created");
+        return res.json("Pallet has been added")
     });
+   
 };
-
-  
